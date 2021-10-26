@@ -9,8 +9,7 @@ namespace Examples.State
     public class TargetAssigner : MonoBehaviour
     {
         public event Action<Vector3> NewTargetAcquired = delegate { };
-
-        [SerializeField] AudioClip _newTargetSound = null;
+ 
         [SerializeField] GameObject _targetIndicatorPrefab = null;
         GameObject _targetIndicator;
 
@@ -53,9 +52,8 @@ namespace Examples.State
             // handle the target visual
             _targetIndicator.SetActive(true);
             _targetIndicator.transform.position = position;
-            // feedback
-            AudioSource.PlayClipAtPoint(_newTargetSound, _camera.transform.position);
-            // send out notification
+ 
+            // send notification
             NewTargetAcquired.Invoke(position);
         }
     }
